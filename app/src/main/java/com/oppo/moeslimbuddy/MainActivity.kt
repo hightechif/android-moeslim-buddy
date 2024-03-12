@@ -1,11 +1,37 @@
 package com.oppo.moeslimbuddy
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import com.oppo.moeslimbuddy.databinding.ActivityMainBinding
+import com.oppo.moeslimbuddy.ui.base.BaseActivity
+import com.oppo.moeslimbuddy.ui.mosque.NearMosquesActivity
+import com.oppo.moeslimbuddy.ui.prayertime.PrayerTimeActivity
+import com.oppo.moeslimbuddy.ui.qibla.QiblaActivity
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+class MainActivity : BaseActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+    override fun setupView() {
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
+
+    override fun setupListener() {
+        binding.btnQibla.setOnClickListener {
+            QiblaActivity.open(this)
+        }
+        binding.btnPrayer.setOnClickListener {
+            PrayerTimeActivity.open(this)
+        }
+        binding.btnMosque.setOnClickListener {
+            NearMosquesActivity.open(this)
+        }
+    }
+
+    override fun setupObserver() {
+
+    }
+
+    override fun initData() {
+
+    }
+
 }
