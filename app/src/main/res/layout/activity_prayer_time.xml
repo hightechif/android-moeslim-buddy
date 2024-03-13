@@ -17,153 +17,167 @@
         android:textColor="@color/black"
         tools:ignore="TextContrastCheck" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="200dp"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="@dimen/size_24dp"
-        app:cardBackgroundColor="@color/black"
-        app:cardCornerRadius="@dimen/size_16dp">
+        android:orientation="vertical">
 
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/size_16dp"
-            android:stretchColumns="2">
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/H1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="07:15"
+            android:textColor="@color/black" />
 
-            <TableRow android:layout_marginBottom="@dimen/size_4dp">
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="@dimen/size_200dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/size_24dp"
+            app:cardBackgroundColor="@color/black"
+            app:cardCornerRadius="@dimen/size_16dp">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/B3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Imsak"
-                    android:textColor="@color/primaryTextColor" />
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/size_16dp"
+                android:stretchColumns="2">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/B3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="04:30"
-                    android:textColor="@color/primaryTextColor" />
-            </TableRow>
+                <TableRow android:layout_marginBottom="@dimen/size_4dp">
 
-            <TableRow android:layout_marginBottom="@dimen/size_4dp">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/B3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Imsak"
+                        android:textColor="@color/primaryTextColor" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/B3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Fajr"
-                    android:textColor="@color/primaryTextColor" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/B3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="04:30"
+                        android:textColor="@color/primaryTextColor" />
+                </TableRow>
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/B3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="04:40"
-                    android:textColor="@color/primaryTextColor" />
-            </TableRow>
+                <TableRow android:layout_marginBottom="@dimen/size_4dp">
 
-            <TableRow android:layout_marginBottom="@dimen/size_4dp">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/B3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Fajr"
+                        android:textColor="@color/primaryTextColor" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/B3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Sunrise"
-                    android:textColor="@color/primaryTextColor" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/B3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="04:40"
+                        android:textColor="@color/primaryTextColor" />
+                </TableRow>
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/B3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="05:58"
-                    android:textColor="@color/primaryTextColor" />
-            </TableRow>
+                <TableRow android:layout_marginBottom="@dimen/size_4dp">
 
-            <TableRow android:layout_marginBottom="@dimen/size_4dp">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/B3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Sunrise"
+                        android:textColor="@color/primaryTextColor" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/B3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Dhuhr"
-                    android:textColor="@color/primaryTextColor" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/B3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="05:58"
+                        android:textColor="@color/primaryTextColor" />
+                </TableRow>
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/B3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="12:02"
-                    android:textColor="@color/primaryTextColor" />
-            </TableRow>
+                <TableRow android:layout_marginBottom="@dimen/size_4dp">
 
-            <TableRow android:layout_marginBottom="@dimen/size_4dp">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/B3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Dhuhr"
+                        android:textColor="@color/primaryTextColor" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/B3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Asr"
-                    android:textColor="@color/primaryTextColor" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/B3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="12:02"
+                        android:textColor="@color/primaryTextColor" />
+                </TableRow>
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/B3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="15:09"
-                    android:textColor="@color/primaryTextColor" />
-            </TableRow>
+                <TableRow android:layout_marginBottom="@dimen/size_4dp">
 
-            <TableRow android:layout_marginBottom="@dimen/size_4dp">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/B3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Asr"
+                        android:textColor="@color/primaryTextColor" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/B3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Maghrib"
-                    android:textColor="@color/primaryTextColor" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/B3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="15:09"
+                        android:textColor="@color/primaryTextColor" />
+                </TableRow>
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/B3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="18:07"
-                    android:textColor="@color/primaryTextColor" />
-            </TableRow>
+                <TableRow android:layout_marginBottom="@dimen/size_4dp">
 
-            <TableRow android:layout_marginBottom="@dimen/size_4dp">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/B3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Maghrib"
+                        android:textColor="@color/primaryTextColor" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/B3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Isha"
-                    android:textColor="@color/primaryTextColor" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/B3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="18:07"
+                        android:textColor="@color/primaryTextColor" />
+                </TableRow>
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/B3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="19:16"
-                    android:textColor="@color/primaryTextColor" />
-            </TableRow>
-        </TableLayout>
-    </com.google.android.material.card.MaterialCardView>
+                <TableRow android:layout_marginBottom="@dimen/size_4dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/B3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Isha"
+                        android:textColor="@color/primaryTextColor" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/B3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="19:16"
+                        android:textColor="@color/primaryTextColor" />
+                </TableRow>
+            </TableLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </FrameLayout>

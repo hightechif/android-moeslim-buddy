@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,17 +17,54 @@
         android:textColor="@color/black"
         tools:ignore="TextContrastCheck" />
 
-    <FrameLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="120dp"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivCompass"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDirection"
+            style="@style/B4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_qibla_compass" />
-    </FrameLayout>
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/size_12dp"
+            tools:text="20 degree" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_200dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivCompass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_compass_direction" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivNeedle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/ivCompass"
+                app:layout_constraintEnd_toEndOf="@+id/ivCompass"
+                app:layout_constraintStart_toStartOf="@+id/ivCompass"
+                app:layout_constraintTop_toTopOf="@+id/ivCompass"
+                app:srcCompat="@drawable/ic_qibla_needle" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLocation"
+            style="@style/B3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/size_12dp"
+            tools:text="Nama Lokasi" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
 </FrameLayout>
