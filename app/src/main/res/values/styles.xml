@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base App style.   -->
+    <style name="moeslimStyle">
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryVariant">@color/primaryLightColor</item>
+        <item name="colorOnPrimary">@color/primaryTextColor</item>
+    </style>
+
+    <style name="H1" parent="moeslimStyle">
+        <item name="android:textSize">@dimen/text_36sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="B3" parent="moeslimStyle">
+        <item name="android:textSize">@dimen/text_16sp</item>
+    </style>
+
+    <style name="B4" parent="moeslimStyle">
+        <item name="android:textSize">@dimen/text_12sp</item>
+    </style>
+</resources>

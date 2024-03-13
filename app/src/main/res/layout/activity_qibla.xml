@@ -3,15 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/secondaryColor"
     tools:context=".ui.mosque.NearMosquesActivity">
 
     <androidx.appcompat.widget.AppCompatTextView
+        style="@style/H1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center|top"
-        android:layout_marginTop="24dp"
-        android:text="Qibla"
-        android:textSize="36dp" />
+        android:layout_marginTop="@dimen/size_120dp"
+        android:text="@string/qibla"
+        android:textColor="@color/black"
+        tools:ignore="TextContrastCheck" />
 
     <FrameLayout
         android:layout_width="match_parent"

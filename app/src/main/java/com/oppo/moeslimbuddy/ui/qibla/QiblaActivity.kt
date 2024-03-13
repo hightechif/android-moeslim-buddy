@@ -27,7 +27,7 @@ class QiblaActivity : BaseActivity() {
     }
 
     override fun setupObserver() {
-
+        binding.ivCompass.rotation = Math.random().toFloat() * 360F
     }
 
     override fun initData() {

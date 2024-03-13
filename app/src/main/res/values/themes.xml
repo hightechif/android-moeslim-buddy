@@ -11,7 +11,7 @@
         <item name="colorSecondaryVariant">@color/secondaryLightColor</item>
         <item name="colorOnSecondary">@color/secondaryTextColor</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <item name="android:statusBarColor">@color/black</item>
     </style>
 
     <style name="Theme.MoeslimBuddy" parent="Base.Theme.MoeslimBuddy" />
