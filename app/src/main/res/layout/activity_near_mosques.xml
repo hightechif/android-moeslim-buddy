@@ -13,7 +13,7 @@
         android:layout_gravity="center|top"
         android:layout_marginTop="@dimen/size_120dp"
         android:text="@string/near_mosques"
-        android:textColor="@color/black"
+        android:textColor="@color/primaryColor"
         tools:ignore="TextContrastCheck" />
 
 </FrameLayout>

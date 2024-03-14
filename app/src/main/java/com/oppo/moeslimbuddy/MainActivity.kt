@@ -1,10 +1,11 @@
 package com.oppo.moeslimbuddy
 
+import com.google.android.material.snackbar.Snackbar
 import com.oppo.moeslimbuddy.databinding.ActivityMainBinding
 import com.oppo.moeslimbuddy.ui.base.BaseActivity
-import com.oppo.moeslimbuddy.ui.mosque.NearMosquesActivity
 import com.oppo.moeslimbuddy.ui.prayertime.PrayerTimeActivity
 import com.oppo.moeslimbuddy.ui.qibla.QiblaActivity
+import kotlin.system.exitProcess
 
 class MainActivity : BaseActivity() {
 
@@ -22,7 +23,14 @@ class MainActivity : BaseActivity() {
             PrayerTimeActivity.open(this)
         }
         binding.btnMosque.setOnClickListener {
-            NearMosquesActivity.open(this)
+            // TODO: Open NearMosqueActivity
+            val snackbar =
+                Snackbar.make(this, binding.root, "Feature is under development.", Snackbar.LENGTH_SHORT)
+            snackbar.show()
+        }
+        binding.btnExit.setOnClickListener {
+            finish()
+            exitProcess(0)
         }
     }
 

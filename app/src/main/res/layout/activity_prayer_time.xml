@@ -14,7 +14,7 @@
         android:layout_gravity="center|top"
         android:layout_marginTop="@dimen/size_120dp"
         android:text="@string/prayer_time"
-        android:textColor="@color/black"
+        android:textColor="@color/primaryColor"
         tools:ignore="TextContrastCheck" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -29,13 +29,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="07:15"
-            android:textColor="@color/black" />
+            android:textColor="@color/primaryColor" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="@dimen/size_200dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/size_24dp"
-            app:cardBackgroundColor="@color/black"
+            app:cardBackgroundColor="@color/primaryColor"
             app:cardCornerRadius="@dimen/size_16dp">
 
             <TableLayout

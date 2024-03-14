@@ -14,7 +14,7 @@
         android:layout_gravity="center|top"
         android:layout_marginTop="@dimen/size_120dp"
         android:text="@string/qibla"
-        android:textColor="@color/black"
+        android:textColor="@color/primaryColor"
         tools:ignore="TextContrastCheck" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -30,6 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="@dimen/size_12dp"
+            android:textColor="@color/primaryColor"
             tools:text="20 degree" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -64,6 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="@dimen/size_12dp"
+            android:textColor="@color/primaryColor"
             tools:text="Nama Lokasi" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
