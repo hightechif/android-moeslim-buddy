@@ -2,21 +2,15 @@ package com.oppo.moeslimbuddy.ui.qibla
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.location.LocationManager
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
-import androidx.core.location.LocationListenerCompat
-import androidx.core.location.LocationManagerCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentActivity
-import com.google.android.gms.location.LocationServices
 import com.oppo.moeslimbuddy.databinding.ActivityQiblaBinding
 import com.oppo.moeslimbuddy.ui.base.BaseActivity
 import com.oppo.moeslimbuddy.util.PermissionUtils
