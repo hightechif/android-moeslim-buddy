@@ -7,6 +7,13 @@
     android:background="@color/secondaryColor"
     tools:context=".ui.prayertime.PrayerTimeActivity">
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/size_16dp"
+        android:src="@drawable/ic_back" />
+
     <androidx.appcompat.widget.AppCompatTextView
         style="@style/H1"
         android:layout_width="wrap_content"
@@ -24,7 +31,7 @@
         android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatTextView
-            style="@style/H1"
+            style="@style/H2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

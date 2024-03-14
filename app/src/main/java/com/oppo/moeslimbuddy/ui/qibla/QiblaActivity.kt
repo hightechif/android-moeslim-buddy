@@ -33,7 +33,9 @@ class QiblaActivity : BaseActivity() {
     }
 
     override fun setupListener() {
-
+        binding.btnBack.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
     }
 
     override fun setupObserver() {

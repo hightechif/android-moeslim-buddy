@@ -12,6 +12,11 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="H2" parent="moeslimStyle">
+        <item name="android:textSize">@dimen/text_24sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="B3" parent="moeslimStyle">
         <item name="android:textSize">@dimen/text_16sp</item>
     </style>
