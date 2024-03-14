@@ -23,6 +23,7 @@ class MainActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val viewModel: MainViewModel by viewModels()
+    private var hasGetLocation = false
 
     private lateinit var locationManager: LocationManager
     private val locationListener = LocationListenerCompat { location ->
@@ -31,6 +32,7 @@ class MainActivity : BaseActivity() {
             location.longitude,
             location.accuracy
         )
+        hasGetLocation = true
     }
 
     @SuppressLint("MissingPermission")
@@ -74,7 +76,9 @@ class MainActivity : BaseActivity() {
         binding.btnQibla.setOnClickListener {
             checkForLocationPermissions {
                 requestLocation()
-                QiblaActivity.open(this)
+                if (hasGetLocation) {
+                    QiblaActivity.open(this)
+                }
             }
         }
         binding.btnPrayer.setOnClickListener {
