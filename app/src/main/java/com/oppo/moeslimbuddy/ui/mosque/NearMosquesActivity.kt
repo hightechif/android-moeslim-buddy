@@ -8,14 +8,14 @@ import com.oppo.moeslimbuddy.ui.base.BaseActivity
 
 class NearMosquesActivity : BaseActivity() {
 
-    private lateinit var binding: ActivityNearMosquesBinding
-
     companion object {
         fun open(activity: FragmentActivity) {
             val intent = Intent(activity, NearMosquesActivity::class.java)
             ActivityCompat.startActivity(activity, intent, null)
         }
     }
+
+    private lateinit var binding: ActivityNearMosquesBinding
 
     override fun setupView() {
         binding = ActivityNearMosquesBinding.inflate(layoutInflater)

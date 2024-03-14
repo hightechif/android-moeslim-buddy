@@ -1,10 +1,10 @@
-package com.oppo.moeslimbuddy.ui.qibla
+package com.oppo.moeslimbuddy.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class QiblaViewModel : ViewModel() {
+class MainViewModel : ViewModel() {
 
     private var _lat = MutableLiveData<Double?>(null)
     val lat: LiveData<Double?> = _lat

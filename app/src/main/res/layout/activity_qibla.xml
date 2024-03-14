@@ -24,11 +24,26 @@
         android:textColor="@color/primaryColor"
         tools:ignore="TextContrastCheck" />
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <Button
+        android:id="@+id/btnLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:orientation="vertical">
+        android:layout_marginHorizontal="@dimen/size_36dp"
+        android:text="@string/request_location"
+        android:textColor="@color/secondaryColor"
+        android:visibility="gone"
+        tools:visibility="gone" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/llCompass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="@dimen/size_36dp"
+        android:orientation="vertical"
+        android:visibility="visible"
+        tools:visibility="visible">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvDirection"

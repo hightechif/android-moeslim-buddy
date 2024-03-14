@@ -5,7 +5,7 @@ import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.math.sqrt
 
-object CompassUtil {
+object CompassUtils {
     fun calculationByDistance(
         initialLat: Double, initialLong: Double,
         finalLat: Double, finalLong: Double

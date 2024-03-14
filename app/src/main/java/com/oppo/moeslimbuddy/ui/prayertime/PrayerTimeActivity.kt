@@ -7,15 +7,14 @@ import com.oppo.moeslimbuddy.databinding.ActivityPrayerTimeBinding
 import com.oppo.moeslimbuddy.ui.base.BaseActivity
 
 class PrayerTimeActivity : BaseActivity() {
-
-    private lateinit var binding: ActivityPrayerTimeBinding
-
     companion object {
         fun open(activity: FragmentActivity) {
             val intent = Intent(activity, PrayerTimeActivity::class.java)
             ActivityCompat.startActivity(activity, intent, null)
         }
     }
+
+    private lateinit var binding: ActivityPrayerTimeBinding
 
     override fun setupView() {
         binding = ActivityPrayerTimeBinding.inflate(layoutInflater)

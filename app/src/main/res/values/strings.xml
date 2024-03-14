@@ -4,4 +4,5 @@
     <string name="prayer_time">Prayer Time</string>
     <string name="near_mosques">Near Mosques</string>
     <string name="exit">Exit</string>
+    <string name="request_location">Request location</string>
 </resources>
