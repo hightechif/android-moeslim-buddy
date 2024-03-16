@@ -63,8 +63,16 @@ android {
             applicationIdSuffix = ".demo"
             versionNameSuffix = "-demo"
 
-            buildConfigField("String", "BUILD_NUMBER", "\"${project.property("apps_staging_build_number")}\"")
-            buildConfigField("String", "BASE_API_URL", "\"${project.property("api_base_url_staging")}\"")
+            buildConfigField(
+                "String",
+                "BUILD_NUMBER",
+                "\"${project.property("apps_staging_build_number")}\""
+            )
+            buildConfigField(
+                "String",
+                "BASE_API_URL",
+                "\"${project.property("api_base_url_staging")}\""
+            )
             buildConfigField("String", "VERSION_NAME", "\"${project.property("apps_version")}\"")
             resValue("string", "app_name", "Moeslim Buddy Dev")
         }
@@ -73,8 +81,16 @@ android {
             applicationIdSuffix = ".full"
             versionNameSuffix = "-full"
 
-            buildConfigField("String", "BUILD_NUMBER", "\"${project.property("apps_production_build_number")}\"")
-            buildConfigField("String", "BASE_API_URL", "\"${project.property("api_base_url_production")}\"")
+            buildConfigField(
+                "String",
+                "BUILD_NUMBER",
+                "\"${project.property("apps_production_build_number")}\""
+            )
+            buildConfigField(
+                "String",
+                "BASE_API_URL",
+                "\"${project.property("api_base_url_production")}\""
+            )
             buildConfigField("String", "VERSION_NAME", "\"${project.property("apps_version")}\"")
             resValue("string", "app_name", "Moeslim Buddy")
         }
@@ -116,6 +132,11 @@ dependencies {
     implementation(libs.gson)
     implementation(libs.splash)
     implementation(libs.webkit)
+    /* security */
+    implementation(libs.security.crypto)
+    implementation(libs.secure.preferences)
+    implementation(libs.sqlcipher)
+    implementation(libs.sqlite.ktx)
     /* testing */
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

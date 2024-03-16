@@ -31,6 +31,10 @@ timber = "5.0.1"
 gson = "2.8.8"
 splash = "1.0.0-beta01"
 webkit = "1.4.0"
+security-crypto = "1.1.0-alpha03"
+secure-preference = "0.1.7"
+sqlcipher = "4.4.0"
+sqlite_ktx = "2.1.0"
 
 [libraries]
 # basic
@@ -70,6 +74,11 @@ timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "tim
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 splash = { group = "androidx.core", name = "core-splashscreen", version.ref = "splash" }
 webkit = { group = "androidx.webkit", name = "webkit", version.ref = "webkit" }
+# security
+security-crypto = { group = "androidx.security", name = "security-crypto", version.ref = "security-crypto" }
+secure-preferences = { group = "com.scottyab", name = "secure-preferences-lib", version.ref = "secure-preference" }
+sqlcipher = { group = "net.zetetic", name = "android-database-sqlcipher", version.ref = "sqlcipher" }
+sqlite-ktx = { group = "androidx.sqlite", name = "sqlite-ktx", version.ref = "sqlite_ktx" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
