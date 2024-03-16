@@ -1,6 +1,8 @@
 [versions]
 agp = "8.2.0"
 kotlin = "1.9.10"
+ksp = "1.8.10-1.0.9"
+# basic
 core-ktx = "1.12.0"
 junit = "4.13.2"
 androidx-test-ext-junit = "1.1.5"
@@ -9,12 +11,29 @@ appcompat = "1.6.1"
 material = "1.11.0"
 constraintlayout = "2.1.4"
 activity = "1.3.1"
+# location & maps
 smartlocation = "3.3.3"
 google-places = "2.6.0"
 google-maps = "18.1.0"
 compass-qibla = "1.0.0"
+# persistence
+room = "2.4.3"
+# networking
+retrofit = "2.9.0"
+okhttp = "5.0.0-alpha.9"
+# dependencies injection
+koin = "3.2.0"
+# mapper
+mapstruct = "1.5.3.Final"
+mapstruct-kotlin = "1.4.0.0"
+# support lib
+timber = "5.0.1"
+gson = "2.8.8"
+splash = "1.0.0-beta01"
+webkit = "1.4.0"
 
 [libraries]
+# basic
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
@@ -23,12 +42,37 @@ appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "a
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 activity = { group = "androidx.activity", name = "activity-ktx", version.ref = "activity" }
+# location & maps
 smartlocation = { group = "io.nlopez.smartlocation", name = "library", version.ref = "smartlocation" }
 google-places = { group = "com.google.android.libraries.places", name = "places", version.ref = "google-places" }
 google-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "google-maps" }
 compass-qibla = { group = "com.github.derysudrajat", name = "compass-qibla", version.ref = "compass-qibla" }
+# persistence
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+room-testing = { group = "androidx.room", name = "room-testing", version.ref = "room" }
+# networking
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+okhttp-logger = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+# dependencies injection
+koin = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
+koin-nav = { group = "io.insert-koin", name = "koin-androidx-navigation", version.ref = "koin" }
+# mapper
+mapstruct = { group = "org.mapstruct", name = "mapstruct", version.ref = "mapstruct" }
+mapstruct-processor = { group = "org.mapstruct", name = "mapstruct-processor", version.ref = "mapstruct" }
+mapstruct-kotlin = { group = "com.github.pozo", name = "mapstruct-kotlin", version.ref = "mapstruct-kotlin" }
+mapstruct-kotlin-processor = { group = "com.github.pozo", name = "mapstruct-kotlin-processor", version.ref = "mapstruct-kotlin" }
+# support lib
+timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+splash = { group = "androidx.core", name = "core-splashscreen", version.ref = "splash" }
+webkit = { group = "androidx.webkit", name = "webkit", version.ref = "webkit" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinKapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
