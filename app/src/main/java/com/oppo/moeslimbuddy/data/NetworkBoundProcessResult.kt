@@ -1,12 +1,9 @@
 package com.oppo.moeslimbuddy.data
 
-import com.oppo.moeslimbuddy.data.source.local.HttpHeaderLocalSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-abstract class NetworkBoundProcessResource<ResultType, RequestType>(
-    private val localDataSource: HttpHeaderLocalSource,
-) {
+abstract class NetworkBoundProcessResource<ResultType, RequestType> {
 
     private val result: Flow<Result<ResultType>> = flow {
         emit(Result.Loading())
@@ -29,16 +26,7 @@ abstract class NetworkBoundProcessResource<ResultType, RequestType>(
             }
 
             Result.Status.UNAUTHORIZED -> {
-                val cachedHeaders = localDataSource.getCached()
-                val refreshToken = cachedHeaders?.get("refresh-token")
-                localDataSource.setBearerToken(refreshToken)
-                if (refreshToken != null) {
-                    localDataSource.logout()
-                    emit(Result.Unauthorized<ResultType>(response.message))
-                } else {
-                    localDataSource.logout()
-                    emit(Result.Unauthorized<ResultType>(response.message))
-                }
+                emit(Result.Unauthorized<ResultType>(response.message))
             }
 
             else -> {

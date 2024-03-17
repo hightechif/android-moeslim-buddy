@@ -9,6 +9,7 @@ import com.oppo.moeslimbuddy.data.source.remote.response.ApiContentResponse
 import com.oppo.moeslimbuddy.data.source.remote.response.ApiResponse
 import okio.BufferedSource
 import retrofit2.Response
+import timber.log.Timber
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
@@ -17,7 +18,7 @@ import java.nio.charset.Charset
 /**
  * Abstract Base Data source class with error handling
  */
-abstract class BaseDataSource {
+abstract class BaseRemoteDataSource {
 
     @Suppress("INFERRED_TYPE_VARIABLE_INTO_EMPTY_INTERSECTION_WARNING")
     protected suspend fun <T> getResult(call: suspend () -> Response<T>): Result<T> {
@@ -103,6 +104,7 @@ abstract class BaseDataSource {
             ) {
                 Result.Error("ConnectionError", ErrorMessage().connection(), null)
             } else {
+                Timber.e("999", ErrorMessage().system(e.message))
                 Result.Error("999", ErrorMessage().system(e.message), null)
             }
         }

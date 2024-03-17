@@ -3,6 +3,12 @@ package com.oppo.moeslimbuddy
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
 import com.oppo.moeslimbuddy.di.databaseModule
+import com.oppo.moeslimbuddy.di.networkingModule
+import com.oppo.moeslimbuddy.di.repositoryModule
+import com.oppo.moeslimbuddy.di.serviceModule
+import com.oppo.moeslimbuddy.di.sharedPreferencesModule
+import com.oppo.moeslimbuddy.di.useCaseModule
+import com.oppo.moeslimbuddy.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import timber.log.Timber
@@ -19,7 +25,13 @@ class MainApp : Application() {
                 androidContext(applicationContext)
                 modules(
                     listOf(
+                        networkingModule,
+                        sharedPreferencesModule,
                         databaseModule,
+                        serviceModule,
+                        repositoryModule,
+                        useCaseModule,
+                        viewModelModule
                     )
                 )
             }

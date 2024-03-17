@@ -3,13 +3,10 @@ package com.oppo.moeslimbuddy.ui
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.pm.PackageManager
-import android.location.Location
 import android.location.LocationManager
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.core.app.ActivityCompat
 import androidx.core.location.LocationListenerCompat
 import androidx.core.location.LocationManagerCompat
 import com.google.android.material.snackbar.Snackbar
@@ -37,6 +34,8 @@ class MainActivity : BaseActivity() {
                 location.latitude,
                 location.longitude,
                 location.accuracy.toDouble(),
+                "",
+                "",
                 System.currentTimeMillis()
             )
         )

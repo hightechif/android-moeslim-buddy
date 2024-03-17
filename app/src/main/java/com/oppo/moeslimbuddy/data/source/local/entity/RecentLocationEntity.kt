@@ -20,5 +20,5 @@ data class RecentLocationEntity(
     val accuracy: Double?,
 
     @ColumnInfo(name = "timestamp")
-    val timestamp: Double?,
+    val timestamp: Double,
 )
