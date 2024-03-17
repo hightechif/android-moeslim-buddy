@@ -3,7 +3,6 @@ package com.oppo.moeslimbuddy.ui.qibla
 import android.content.Intent
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.core.view.isVisible
@@ -46,11 +45,11 @@ class QiblaActivity : BaseActivity() {
         compassBuilder.onPermissionGranted { permission ->
             binding.btnLocation.isVisible = false
             binding.llCompass.isVisible = true
-            Toast.makeText(this, "onPermissionGranted $permission", Toast.LENGTH_SHORT).show()
+            // Toast.makeText(this, "onPermissionGranted $permission", Toast.LENGTH_SHORT).show()
         }.onPermissionDenied {
             binding.llCompass.isVisible = false
             binding.btnLocation.isVisible = true
-            Toast.makeText(this, "onPermissionDenied", Toast.LENGTH_SHORT).show()
+            // Toast.makeText(this, "onPermissionDenied", Toast.LENGTH_SHORT).show()
         }.onGetLocationAddress { address ->
             binding.tvLocation.text = buildString {
                 append(address.locality)

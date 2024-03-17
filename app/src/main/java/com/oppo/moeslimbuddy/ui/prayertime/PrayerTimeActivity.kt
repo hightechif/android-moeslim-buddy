@@ -8,7 +8,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Looper
 import android.provider.Settings
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -245,7 +244,7 @@ class PrayerTimeActivity : BaseActivity() {
 
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
-                    Toast.makeText(this, "permission denied", Toast.LENGTH_LONG).show()
+                    // Toast.makeText(this, "permission denied", Toast.LENGTH_LONG).show()
 
                     // Check if we are in a state where the user has denied the permission and
                     // selected Don't ask again
@@ -278,15 +277,15 @@ class PrayerTimeActivity : BaseActivity() {
                             locationRequest, locationCallback, Looper.getMainLooper()
                         )
 
-                        Toast.makeText(
-                            this, "Granted Background Location Permission", Toast.LENGTH_LONG
-                        ).show()
+                        // Toast.makeText(
+                        //     this, "Granted Background Location Permission", Toast.LENGTH_LONG
+                        // ).show()
                     }
                 } else {
 
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
-                    Toast.makeText(this, "permission denied", Toast.LENGTH_LONG).show()
+                    // Toast.makeText(this, "permission denied", Toast.LENGTH_LONG).show()
                 }
                 return
 
