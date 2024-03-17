@@ -13,8 +13,18 @@
     </style>
 
     <style name="H2" parent="moeslimStyle">
-        <item name="android:textSize">@dimen/text_24sp</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="H3" parent="moeslimStyle">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="H4" parent="moeslimStyle">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">10sp</item>
     </style>
 
     <style name="B3" parent="moeslimStyle">
@@ -24,4 +34,20 @@
     <style name="B4" parent="moeslimStyle">
         <item name="android:textSize">@dimen/text_12sp</item>
     </style>
+
+    <declare-styleable name="ButtonView">
+        <attr format="enum" name="variant">
+            <enum name="primary" value="0"/>
+            <enum name="secondary" value="1"/>
+            <enum name="alternative" value="2"/>
+            <enum name="outline" value="3"/>
+            <enum name="custom" value="4"/>
+        </attr>
+        <attr format="enum" name="size">
+            <enum name="medium" value="0"/>
+            <enum name="small" value="1"/>
+        </attr>
+        <attr format="reference" name="buttonBackground"/>
+        <attr format="reference" name="buttonTextColor"/>
+    </declare-styleable>
 </resources>

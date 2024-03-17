@@ -1,190 +1,207 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/secondaryColor"
-    tools:context=".ui.prayertime.PrayerTimeActivity">
+    android:fitsSystemWindows="true">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/btnBack"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/size_16dp"
-        android:src="@drawable/ic_back" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        style="@style/H1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|top"
-        android:layout_marginTop="@dimen/size_120dp"
-        android:text="@string/prayer_time"
-        android:textColor="@color/primaryColor"
-        tools:ignore="TextContrastCheck" />
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            style="@style/H2"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="07:15"
-            android:textColor="@color/primaryColor" />
+            android:background="@color/secondaryDarkColor"
+            android:elevation="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="@dimen/size_200dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/size_24dp"
-            app:cardBackgroundColor="@color/primaryColor"
-            app:cardCornerRadius="@dimen/size_16dp">
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_margin="8dp"
+                android:contentDescription="@string/exit"
+                android:padding="4dp"
+                android:src="@drawable/ic_back"
+                app:tint="@color/secondaryTextColor" />
 
-            <TableLayout
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/bold"
+                android:text="@string/prayer_time"
+                android:textColor="@color/secondaryTextColor"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/qibla"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/circle"
+                android:backgroundTint="@color/secondaryColor"
+                android:contentDescription="@string/qibla"
+                android:padding="8dp"
+                android:src="@drawable/ic_qibla"
+                app:tint="@color/black" />
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:transitionName="header"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+            <RelativeLayout
+                android:id="@+id/viewHeaderBackground"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="@dimen/size_16dp"
-                android:stretchColumns="2">
+                android:background="@drawable/radial"
+                android:elevation="0dp"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <TableRow android:layout_marginBottom="@dimen/size_4dp">
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        style="@style/B3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Imsak"
-                        android:textColor="@color/primaryTextColor" />
+            <ImageView
+                android:id="@+id/viewHeaderDecor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.4"
+                android:contentDescription="@string/banner"
+                android:src="@drawable/ic_subtract_2"
+                android:translationY="-40dp"
+                app:layout_constraintDimensionRatio="1.5:1"
+                app:layout_constraintLeft_toLeftOf="parent" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        style="@style/B3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="04:30"
-                        android:textColor="@color/primaryTextColor" />
-                </TableRow>
+            <ImageView
+                android:id="@+id/mosque"
+                android:layout_width="270dp"
+                android:layout_height="120dp"
+                android:layout_marginBottom="5dp"
+                android:alpha="0.2"
+                android:contentDescription="@string/mosque"
+                android:src="@drawable/mosque"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
 
-                <TableRow android:layout_marginBottom="@dimen/size_4dp">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/viewPrayerTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:transitionName="text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        style="@style/B3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Fajr"
-                        android:textColor="@color/primaryTextColor" />
+                <TextView
+                    android:id="@+id/textNextPrayer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/regular"
+                    android:text="@string/current_time"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        style="@style/B3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="04:40"
-                        android:textColor="@color/primaryTextColor" />
-                </TableRow>
+                <TextView
+                    android:id="@+id/textTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/bold"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="32sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textNextPrayer"
+                    tools:text="04:09" />
 
-                <TableRow android:layout_marginBottom="@dimen/size_4dp">
+                <TextView
+                    android:id="@+id/textUntil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/regular"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textTime"
+                    tools:text="6h 19m left until Fajr" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        style="@style/B3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Sunrise"
-                        android:textColor="@color/primaryTextColor" />
+                <ImageView
+                    android:id="@+id/locationIcon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:contentDescription="@string/location"
+                    android:padding="3dp"
+                    android:src="@drawable/ic_location"
+                    app:layout_constraintBottom_toBottomOf="@id/address"
+                    app:layout_constraintRight_toLeftOf="@id/address"
+                    app:layout_constraintTop_toTopOf="@id/address"
+                    app:tint="@color/white" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        style="@style/B3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="05:58"
-                        android:textColor="@color/primaryTextColor" />
-                </TableRow>
+                <TextView
+                    android:id="@+id/address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/regular"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textUntil"
+                    tools:text="Purwakarta" />
 
-                <TableRow android:layout_marginBottom="@dimen/size_4dp">
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        style="@style/B3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Dhuhr"
-                        android:textColor="@color/primaryTextColor" />
+            <RelativeLayout
+                android:id="@+id/viewHeaderFooter"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:background="@drawable/ic_footer"
+                android:elevation="2dp"
+                app:layout_constraintBottom_toBottomOf="parent">
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        style="@style/B3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="12:02"
-                        android:textColor="@color/primaryTextColor" />
-                </TableRow>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/secondaryColor" />
+            </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TableRow android:layout_marginBottom="@dimen/size_4dp">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPrayTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header"
+            tools:listitem="@layout/item_home_praytime" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        style="@style/B3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Asr"
-                        android:textColor="@color/primaryTextColor" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        style="@style/B3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="15:09"
-                        android:textColor="@color/primaryTextColor" />
-                </TableRow>
-
-                <TableRow android:layout_marginBottom="@dimen/size_4dp">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        style="@style/B3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Maghrib"
-                        android:textColor="@color/primaryTextColor" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        style="@style/B3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="18:07"
-                        android:textColor="@color/primaryTextColor" />
-                </TableRow>
-
-                <TableRow android:layout_marginBottom="@dimen/size_4dp">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        style="@style/B3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Isha"
-                        android:textColor="@color/primaryTextColor" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        style="@style/B3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="19:16"
-                        android:textColor="@color/primaryTextColor" />
-                </TableRow>
-            </TableLayout>
-        </com.google.android.material.card.MaterialCardView>
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-</FrameLayout>
+</androidx.core.widget.NestedScrollView>

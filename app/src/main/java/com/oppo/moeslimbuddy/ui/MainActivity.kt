@@ -4,6 +4,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
+import android.location.Location
 import android.location.LocationManager
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -13,25 +14,33 @@ import androidx.core.location.LocationListenerCompat
 import androidx.core.location.LocationManagerCompat
 import com.google.android.material.snackbar.Snackbar
 import com.oppo.moeslimbuddy.databinding.ActivityMainBinding
+import com.oppo.moeslimbuddy.domain.model.RecentLocation
 import com.oppo.moeslimbuddy.ui.base.BaseActivity
+import com.oppo.moeslimbuddy.ui.base.ProgressView
 import com.oppo.moeslimbuddy.ui.prayertime.PrayerTimeActivity
 import com.oppo.moeslimbuddy.ui.qibla.QiblaActivity
 import com.oppo.moeslimbuddy.util.PermissionUtils
+import io.github.derysudrajat.compassqibla.LocationUtils.checkLocationPermission
 import kotlin.system.exitProcess
 
 class MainActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val viewModel: MainViewModel by viewModels()
-    private var hasGetLocation = false
+    private var hasGetLocation = true
 
     private lateinit var locationManager: LocationManager
     private val locationListener = LocationListenerCompat { location ->
+        ProgressView.show(this@MainActivity)
         viewModel.setLocation(
-            location.latitude,
-            location.longitude,
-            location.accuracy
+            RecentLocation(
+                location.latitude,
+                location.longitude,
+                location.accuracy.toDouble(),
+                System.currentTimeMillis()
+            )
         )
+        ProgressView.close()
         hasGetLocation = true
     }
 
@@ -66,7 +75,8 @@ class MainActivity : BaseActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        checkLocPermission {
+        checkLocationPermission {
+            ProgressView.show(this)
             requestLocation()
         }
     }
@@ -82,7 +92,7 @@ class MainActivity : BaseActivity() {
             }
         }
         binding.btnPrayer.setOnClickListener {
-            PrayerTimeActivity.open(this)
+            PrayerTimeActivity.open(this, viewModel.recentLocation.value)
         }
         binding.btnMosque.setOnClickListener {
             // TODO: Open NearMosqueActivity
@@ -102,7 +112,11 @@ class MainActivity : BaseActivity() {
     }
 
     override fun setupObserver() {
-
+        viewModel.recentLocation.observe(this) {
+            if (it != null) {
+                ProgressView.close()
+            }
+        }
     }
 
     override fun initData() {
@@ -142,20 +156,6 @@ class MainActivity : BaseActivity() {
             null
         ) {
             action.invoke()
-        }
-    }
-
-    private fun checkLocPermission(onMissing: () -> Unit) {
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            onMissing.invoke()
-            return
         }
     }
 
