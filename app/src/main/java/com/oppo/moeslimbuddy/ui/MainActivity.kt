@@ -16,6 +16,7 @@ import com.oppo.moeslimbuddy.ui.base.BaseActivity
 import com.oppo.moeslimbuddy.ui.base.ProgressView
 import com.oppo.moeslimbuddy.ui.prayertime.PrayerTimeActivity
 import com.oppo.moeslimbuddy.ui.qibla.QiblaActivity
+import com.oppo.moeslimbuddy.ui.testing.LocationTestActivity
 import com.oppo.moeslimbuddy.util.PermissionUtils
 import io.github.derysudrajat.compassqibla.LocationUtils.checkLocationPermission
 import kotlin.system.exitProcess
@@ -57,16 +58,10 @@ class MainActivity : BaseActivity() {
             }
 
             locationManager.requestLocationUpdates(
-                LocationManager.GPS_PROVIDER,
-                1_000,
-                0.5f,
-                locationListener
+                LocationManager.GPS_PROVIDER, 1_000, 0.5f, locationListener
             )
             locationManager.requestLocationUpdates(
-                LocationManager.NETWORK_PROVIDER,
-                5_000,
-                0.5f,
-                locationListener
+                LocationManager.NETWORK_PROVIDER, 5_000, 0.5f, locationListener
             )
         }
 
@@ -78,6 +73,7 @@ class MainActivity : BaseActivity() {
             ProgressView.show(this)
             requestLocation()
         }
+        LocationTestActivity.open(this)
     }
 
     override fun setupListener() {
@@ -95,13 +91,9 @@ class MainActivity : BaseActivity() {
         }
         binding.btnMosque.setOnClickListener {
             // TODO: Open NearMosqueActivity
-            val snackbar =
-                Snackbar.make(
-                    this,
-                    binding.root,
-                    "Feature is under development.",
-                    Snackbar.LENGTH_SHORT
-                )
+            val snackbar = Snackbar.make(
+                this, binding.root, "Feature is under development.", Snackbar.LENGTH_SHORT
+            )
             snackbar.show()
         }
         binding.btnExit.setOnClickListener {
@@ -129,30 +121,21 @@ class MainActivity : BaseActivity() {
     private fun requestLocation() {
         checkForLocationPermissions {
             locationManager.requestLocationUpdates(
-                LocationManager.GPS_PROVIDER,
-                1_000,
-                0.5f,
-                locationListener
+                LocationManager.GPS_PROVIDER, 1_000, 0.5f, locationListener
             )
 
             locationManager.requestLocationUpdates(
-                LocationManager.NETWORK_PROVIDER,
-                5_000,
-                0.5f,
-                locationListener
+                LocationManager.NETWORK_PROVIDER, 5_000, 0.5f, locationListener
             )
         }
     }
 
     private fun checkForLocationPermissions(action: () -> Unit) {
         PermissionUtils.checkPermissions(
-            this,
-            arrayOf(
+            this, arrayOf(
                 Manifest.permission.ACCESS_COARSE_LOCATION,
                 Manifest.permission.ACCESS_FINE_LOCATION,
-            ),
-            permissionResultLauncher,
-            null
+            ), permissionResultLauncher, null
         ) {
             action.invoke()
         }
