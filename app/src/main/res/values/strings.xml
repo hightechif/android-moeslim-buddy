@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Moeslim Buddy</string>
+    <string name="qibla">Qibla</string>
+    <string name="prayer_time">Prayer Time</string>
+    <string name="near_mosques">Near Mosques</string>
+    <string name="exit">Exit</string>
+    <string name="request_location">Request location</string>
+    <string name="icon">icon</string>
+    <string name="alarm">alarm</string>
+    <string name="banner">banner</string>
+    <string name="mosque">mosque</string>
+    <string name="location">location</string>
+    <string name="current_time">Current Time</string>
 </resources>

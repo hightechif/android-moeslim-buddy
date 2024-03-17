@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- disabled -->
+    <item android:state_enabled="false">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/secondaryTextColor" />
+            <corners android:radius="@dimen/size_4dp" />
+        </shape>
+    </item>
+    <!-- outline -->
+    <item android:state_activated="true" android:state_enabled="true" android:state_selected="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/white" />
+            <stroke android:width="1dp" android:color="@color/secondaryTextColor" />
+            <corners android:radius="@dimen/size_4dp" />
+        </shape>
+    </item>
+    <!-- alternative -->
+    <item android:state_activated="true" android:state_enabled="true" android:state_selected="false">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/white" />
+            <stroke android:width="1dp" android:color="@color/primaryColor" />
+            <corners android:radius="@dimen/size_4dp" />
+        </shape>
+    </item>
+    <!-- secondary -->
+    <item android:state_enabled="true" android:state_selected="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/secondaryColor" />
+            <corners android:radius="@dimen/size_4dp" />
+        </shape>
+    </item>
+    <!-- primary -->
+    <item android:state_enabled="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/primaryColor" />
+            <corners android:radius="@dimen/size_4dp" />
+        </shape>
+    </item>
+</selector>
