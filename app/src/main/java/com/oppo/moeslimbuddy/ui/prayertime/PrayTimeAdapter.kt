@@ -27,9 +27,11 @@ class PrayTimeAdapter : RecyclerView.Adapter<PrayTimeHolder>() {
 
     @SuppressLint("NotifyDataSetChanged")
     fun setData(input: List<PrayTime>) {
-        list.clear()
-        list.addAll(input)
-        notifyDataSetChanged()
+        if (input != list) {
+            list.clear()
+            list.addAll(input)
+            notifyDataSetChanged()
+        }
     }
 
 }

@@ -1,93 +1,90 @@
 package com.oppo.moeslimbuddy.ui
 
 import android.Manifest
-import android.annotation.SuppressLint
-import android.content.Context
-import android.location.LocationManager
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Location
+import android.net.Uri
+import android.os.Build
+import android.os.Looper
+import android.provider.Settings
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.core.location.LocationListenerCompat
-import androidx.core.location.LocationManagerCompat
+import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationResult
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.Priority
 import com.google.android.material.snackbar.Snackbar
 import com.oppo.moeslimbuddy.databinding.ActivityMainBinding
-import com.oppo.moeslimbuddy.domain.model.RecentLocation
 import com.oppo.moeslimbuddy.ui.base.BaseActivity
 import com.oppo.moeslimbuddy.ui.base.ProgressView
 import com.oppo.moeslimbuddy.ui.prayertime.PrayerTimeActivity
 import com.oppo.moeslimbuddy.ui.qibla.QiblaActivity
-import com.oppo.moeslimbuddy.ui.testing.LocationTestActivity
-import com.oppo.moeslimbuddy.util.PermissionUtils
-import io.github.derysudrajat.compassqibla.LocationUtils.checkLocationPermission
 import kotlin.system.exitProcess
 
 class MainActivity : BaseActivity() {
 
-    private lateinit var binding: ActivityMainBinding
-    private val viewModel: MainViewModel by viewModels()
-    private var hasGetLocation = true
-
-    private lateinit var locationManager: LocationManager
-    private val locationListener = LocationListenerCompat { location ->
-        ProgressView.show(this@MainActivity)
-        viewModel.setLocation(
-            RecentLocation(
-                location.latitude,
-                location.longitude,
-                location.accuracy.toDouble(),
-                "",
-                "",
-                System.currentTimeMillis()
-            )
-        )
-        ProgressView.close()
-        hasGetLocation = true
+    companion object {
+        private const val MY_PERMISSIONS_REQUEST_LOCATION = 99
+        private const val MY_PERMISSIONS_REQUEST_BACKGROUND_LOCATION = 66
     }
 
-    @SuppressLint("MissingPermission")
-    private val permissionResultLauncher =
-        registerForActivityResult((ActivityResultContracts.RequestMultiplePermissions())) {
-            if (it.containsValue(false)) {
-                Toast.makeText(
-                    this,
-                    "Mohon memberikan izin kepada aplikasi untuk mengakses lokasi & kamera",
-                    Toast.LENGTH_SHORT
-                ).show()
+    private lateinit var binding: ActivityMainBinding
+    private val viewModel: MainViewModel by viewModels()
+    private var fusedLocationProvider: FusedLocationProviderClient? = null
+    private val locationRequest: LocationRequest = LocationRequest.create().apply {
+        interval = 30
+        fastestInterval = 10
+        priority = Priority.PRIORITY_BALANCED_POWER_ACCURACY
+        maxWaitTime = 60
+    }
 
-                return@registerForActivityResult
+    private var locationCallback: LocationCallback = object : LocationCallback() {
+        override fun onLocationResult(locationResult: LocationResult) {
+            val locationList = locationResult.locations
+            if (locationList.isNotEmpty()) {
+                //The last location in the list is the newest
+                val location = locationList.last()
+                currentLocation = location
+                viewModel.getLocationAddress(this@MainActivity, currentLocation)
+                ProgressView.close()
             }
-
-            locationManager.requestLocationUpdates(
-                LocationManager.GPS_PROVIDER, 1_000, 0.5f, locationListener
-            )
-            locationManager.requestLocationUpdates(
-                LocationManager.NETWORK_PROVIDER, 5_000, 0.5f, locationListener
-            )
         }
+    }
+    private lateinit var currentLocation: Location
 
     override fun setupView() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        checkLocationPermission {
-            ProgressView.show(this)
-            requestLocation()
-        }
-        LocationTestActivity.open(this)
+        fusedLocationProvider = LocationServices.getFusedLocationProviderClient(this)
+        checkLocationPermission()
+
+
+//        checkLocationPermission {
+//            requestLocation()
+//        }
+//        checkLocationPermission { requestLocation() }
+//        fusedLocationProvider?.lastLocation?.addOnSuccessListener {
+//            it?.let { location ->
+//
+//            }
+//        }
     }
 
     override fun setupListener() {
-        locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         binding.btnQibla.setOnClickListener {
-            checkForLocationPermissions {
-                requestLocation()
-                if (hasGetLocation) {
-                    QiblaActivity.open(this)
-                }
-            }
+            QiblaActivity.open(this)
         }
         binding.btnPrayer.setOnClickListener {
-            PrayerTimeActivity.open(this, viewModel.recentLocation.value)
+            PrayerTimeActivity.open(this)
+//            if (viewModel.recentLocation.value?.location != null) {
+//            }
         }
         binding.btnMosque.setOnClickListener {
             // TODO: Open NearMosqueActivity
@@ -114,35 +111,173 @@ class MainActivity : BaseActivity() {
 
     }
 
-    private fun checkIsLocationEnabled(): Boolean =
-        LocationManagerCompat.isLocationEnabled(locationManager)
+    private fun checkLocationPermission() {
+        if (ActivityCompat.checkSelfPermission(
+                this, Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(
+                    this, Manifest.permission.ACCESS_FINE_LOCATION
+                )
+            ) {
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+                AlertDialog.Builder(this).setTitle("Location Permission Needed")
+                    .setMessage("This app needs the Location permission, please accept to use location functionality")
+                    .setPositiveButton(
+                        "OK"
+                    ) { _, _ ->
+                        //Prompt the user once explanation has been shown
+                        requestLocationPermission()
+                    }.create().show()
+            } else {
+                // No explanation needed, we can request the permission.
+                requestLocationPermission()
+            }
+        } else {
+            checkBackgroundLocation()
+        }
+    }
 
-    @SuppressLint("MissingPermission")
-    private fun requestLocation() {
-        checkForLocationPermissions {
-            locationManager.requestLocationUpdates(
-                LocationManager.GPS_PROVIDER, 1_000, 0.5f, locationListener
+    private fun checkBackgroundLocation() {
+        if (ActivityCompat.checkSelfPermission(
+                this, Manifest.permission.ACCESS_BACKGROUND_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            requestBackgroundLocationPermission()
+        }
+    }
+
+    private fun requestLocationPermission() {
+        ActivityCompat.requestPermissions(
+            this, arrayOf(
+                Manifest.permission.ACCESS_FINE_LOCATION,
+            ), MY_PERMISSIONS_REQUEST_LOCATION
+        )
+    }
+
+    private fun requestBackgroundLocationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            ActivityCompat.requestPermissions(
+                this, arrayOf(
+                    Manifest.permission.ACCESS_BACKGROUND_LOCATION
+                ), MY_PERMISSIONS_REQUEST_BACKGROUND_LOCATION
             )
-
-            locationManager.requestLocationUpdates(
-                LocationManager.NETWORK_PROVIDER, 5_000, 0.5f, locationListener
+        } else {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                MY_PERMISSIONS_REQUEST_LOCATION
             )
         }
     }
 
-    private fun checkForLocationPermissions(action: () -> Unit) {
-        PermissionUtils.checkPermissions(
-            this, arrayOf(
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION,
-            ), permissionResultLauncher, null
+    override fun onRequestPermissionsResult(
+        requestCode: Int, permissions: Array<String>, grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            MY_PERMISSIONS_REQUEST_LOCATION -> {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // permission was granted, yay! Do the
+                    // location-related task you need to do.
+                    if (ContextCompat.checkSelfPermission(
+                            this, Manifest.permission.ACCESS_FINE_LOCATION
+                        ) == PackageManager.PERMISSION_GRANTED
+                    ) {
+                        fusedLocationProvider?.requestLocationUpdates(
+                            locationRequest, locationCallback, Looper.getMainLooper()
+                        )
+
+                        // Now check background location
+                        checkBackgroundLocation()
+                    }
+
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                    Toast.makeText(this, "permission denied", Toast.LENGTH_LONG).show()
+
+                    // Check if we are in a state where the user has denied the permission and
+                    // selected Don't ask again
+                    if (!ActivityCompat.shouldShowRequestPermissionRationale(
+                            this, Manifest.permission.ACCESS_FINE_LOCATION
+                        )
+                    ) {
+                        startActivity(
+                            Intent(
+                                Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                                Uri.fromParts("package", this.packageName, null),
+                            ),
+                        )
+                    }
+                }
+                return
+            }
+
+            MY_PERMISSIONS_REQUEST_BACKGROUND_LOCATION -> {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // permission was granted, yay! Do the
+                    // location-related task you need to do.
+                    if (ContextCompat.checkSelfPermission(
+                            this, Manifest.permission.ACCESS_FINE_LOCATION
+                        ) == PackageManager.PERMISSION_GRANTED
+                    ) {
+                        fusedLocationProvider?.requestLocationUpdates(
+                            locationRequest, locationCallback, Looper.getMainLooper()
+                        )
+
+                        Toast.makeText(
+                            this, "Granted Background Location Permission", Toast.LENGTH_LONG
+                        ).show()
+                    }
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                    Toast.makeText(this, "permission denied", Toast.LENGTH_LONG).show()
+                }
+                return
+
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
         ) {
-            action.invoke()
+            fusedLocationProvider?.requestLocationUpdates(
+                locationRequest, locationCallback, Looper.getMainLooper()
+            )
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            )
+            == PackageManager.PERMISSION_GRANTED
+        ) {
+            fusedLocationProvider?.removeLocationUpdates(locationCallback)
         }
     }
 
     override fun onDestroy() {
-        locationManager.removeUpdates(locationListener)
+        fusedLocationProvider?.removeLocationUpdates(locationCallback)
+        fusedLocationProvider = null
         super.onDestroy()
     }
 

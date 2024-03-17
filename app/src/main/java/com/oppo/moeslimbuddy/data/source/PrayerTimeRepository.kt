@@ -9,7 +9,6 @@ import com.oppo.moeslimbuddy.data.source.remote.response.ResPrayerTime
 import com.oppo.moeslimbuddy.domain.model.PrayerTime
 import com.oppo.moeslimbuddy.domain.repository.IPrayerTimeRepository
 import org.mapstruct.factory.Mappers
-import timber.log.Timber
 
 class PrayerTimeRepository(
     private val remoteDataSource: PrayerTimeRemoteDataSource
@@ -24,7 +23,6 @@ class PrayerTimeRepository(
         }
 
         override suspend fun callBackResult(data: ApiResponse<ResPrayerTime?>): PrayerTime? {
-            Timber.d("DEBUG FADHIL: data=$data")
             return data.data?.let {
                 return@let mapper.mapPrayerTimeResponseToModel(it)
             }

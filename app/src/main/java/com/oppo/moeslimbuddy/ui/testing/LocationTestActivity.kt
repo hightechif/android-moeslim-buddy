@@ -19,6 +19,7 @@ import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.Priority
 import com.oppo.moeslimbuddy.R
 
 class LocationTestActivity : AppCompatActivity() {
@@ -36,7 +37,7 @@ class LocationTestActivity : AppCompatActivity() {
     private val locationRequest: LocationRequest = LocationRequest.create().apply {
         interval = 30
         fastestInterval = 10
-        priority = LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY
+        priority = Priority.PRIORITY_BALANCED_POWER_ACCURACY
         maxWaitTime = 60
     }
 
@@ -48,7 +49,7 @@ class LocationTestActivity : AppCompatActivity() {
                 val location = locationList.last()
                 Toast.makeText(
                     this@LocationTestActivity,
-                    "Got Location: " + location.toString(),
+                    "Got Location: $location",
                     Toast.LENGTH_LONG
                 )
                     .show()
@@ -70,13 +71,11 @@ class LocationTestActivity : AppCompatActivity() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
             == PackageManager.PERMISSION_GRANTED
         ) {
-
             fusedLocationProvider?.requestLocationUpdates(
                 locationRequest,
                 locationCallback,
                 Looper.getMainLooper()
             )
-            finish()
         }
     }
 
