@@ -11,6 +11,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.Insets
+import androidx.viewbinding.ViewBinding
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -90,6 +92,13 @@ abstract class BaseActivity : AppCompatActivity(), BaseNavigator {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = ContextCompat.getColor(this, color)
 
+    }
+
+    fun showUnderDevelopment(binding: ViewBinding) {
+        val snackbar = Snackbar.make(
+            this, binding.root, "Feature is under development.", Snackbar.LENGTH_SHORT
+        )
+        snackbar.show()
     }
 
 }

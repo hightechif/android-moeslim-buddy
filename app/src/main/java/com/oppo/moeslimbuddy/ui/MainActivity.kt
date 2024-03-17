@@ -19,7 +19,6 @@ import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
-import com.google.android.material.snackbar.Snackbar
 import com.oppo.moeslimbuddy.databinding.ActivityMainBinding
 import com.oppo.moeslimbuddy.ui.base.BaseActivity
 import com.oppo.moeslimbuddy.ui.base.ProgressView
@@ -64,17 +63,6 @@ class MainActivity : BaseActivity() {
 
         fusedLocationProvider = LocationServices.getFusedLocationProviderClient(this)
         checkLocationPermission()
-
-
-//        checkLocationPermission {
-//            requestLocation()
-//        }
-//        checkLocationPermission { requestLocation() }
-//        fusedLocationProvider?.lastLocation?.addOnSuccessListener {
-//            it?.let { location ->
-//
-//            }
-//        }
     }
 
     override fun setupListener() {
@@ -83,15 +71,10 @@ class MainActivity : BaseActivity() {
         }
         binding.btnPrayer.setOnClickListener {
             PrayerTimeActivity.open(this)
-//            if (viewModel.recentLocation.value?.location != null) {
-//            }
         }
         binding.btnMosque.setOnClickListener {
             // TODO: Open NearMosqueActivity
-            val snackbar = Snackbar.make(
-                this, binding.root, "Feature is under development.", Snackbar.LENGTH_SHORT
-            )
-            snackbar.show()
+            showUnderDevelopment(binding)
         }
         binding.btnExit.setOnClickListener {
             finish()

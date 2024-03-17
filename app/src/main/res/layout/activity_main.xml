@@ -20,7 +20,7 @@
         android:layout_width="@dimen/size_120dp"
         android:layout_height="@dimen/size_120dp"
         android:layout_gravity="center"
-        android:src="@drawable/ic_meditation" />
+        android:src="@drawable/ic_buddy" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"

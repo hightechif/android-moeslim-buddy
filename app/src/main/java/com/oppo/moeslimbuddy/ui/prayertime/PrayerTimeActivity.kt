@@ -29,6 +29,7 @@ import com.oppo.moeslimbuddy.databinding.ActivityPrayerTimeBinding
 import com.oppo.moeslimbuddy.domain.model.PrayTime
 import com.oppo.moeslimbuddy.ui.base.BaseActivity
 import com.oppo.moeslimbuddy.ui.base.ProgressView
+import com.oppo.moeslimbuddy.ui.qibla.QiblaActivity
 import com.oppo.moeslimbuddy.util.RecyclerViewUtils
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -92,9 +93,14 @@ class PrayerTimeActivity : BaseActivity() {
             onBackPressedDispatcher.onBackPressed()
         }
 
+        binding.qibla.setOnClickListener {
+            QiblaActivity.open(this)
+            finish()
+        }
+
         prayTimeAdapter.delegate = object : PrayTimeDelegate {
             override fun onClick(t: PrayTime?, position: Int, viewBinding: ViewBinding) {
-
+                showUnderDevelopment(binding)
             }
 
             override fun onDraw(t: PrayTime?, position: Int, viewBinding: ViewBinding) {
