@@ -74,7 +74,7 @@ android {
                 "\"${project.property("api_base_url_staging")}\""
             )
             buildConfigField("String", "VERSION_NAME", "\"${project.property("apps_version")}\"")
-            resValue("string", "app_name", "Moeslim Buddy Dev")
+            resValue("string", "app_name", "Moeslim Buddy Dev \nOPPO UGM")
         }
         create("production") {
             dimension = "version"
@@ -92,7 +92,7 @@ android {
                 "\"${project.property("api_base_url_production")}\""
             )
             buildConfigField("String", "VERSION_NAME", "\"${project.property("apps_version")}\"")
-            resValue("string", "app_name", "Moeslim Buddy")
+            resValue("string", "app_name", "Moeslim Buddy \nOPPO UGM")
         }
     }
 }
